@@ -1,5 +1,5 @@
-import logo from "../assets/logo.png";
 import React, { useEffect, useState } from "react";
+import logo from "..src/assets/logo.png";
 import { createRoot } from "react-dom/client";
 import {
   Circle,
