@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import logo from "..src/assets/logo.png";
 import { createRoot } from "react-dom/client";
 import {
   Circle,
@@ -1600,12 +1599,9 @@ tr:hover td{
           data-tour="brand"
         >
 
-          <div className="brandmark">
-            <img src={logo} alt="VELTRIX" />
-          </div>
+          
 
-          <div>
-            <b>VELTRIX</b>
+    
 
             <span>
               AI-Powered Satellite Intelligence
