@@ -41,10 +41,24 @@ jobs:
           ls -la
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          echo "Node version:"
+          node --version
+          echo "NPM version:"
+          npm --version
+          echo "Current directory:"
+          pwd
+          echo "Project files:"
+          ls -la
+          echo "Package.json:"
+          cat package.json
+          echo "Installing dependencies..."
+          npm install --verbose
 
       - name: Build VELTRIX
-        run: npm run build
+        run: |
+          echo "Starting VELTRIX build..."
+          npm run build --verbose
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
