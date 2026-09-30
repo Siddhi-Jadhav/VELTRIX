@@ -1,4 +1,4 @@
-import logo from "https://siddhi-jadhav.github.io/VELTRIX/assests/logo.jpeg?utm_source=chatgpt.com"
+import logo from "../assets/logo.png";
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
@@ -1601,11 +1601,7 @@ tr:hover td{
         >
 
           <div className="brandmark">
-            <img
-              src="/assets/logo.jpeg"
-              alt="VELTRIX Logo"
-              className="veltrix-logo"
-            />
+            <img src={logo} alt="VELTRIX" />
           </div>
 
           <div>
