@@ -23,6 +23,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: frontend
+
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -33,32 +37,11 @@ jobs:
           node-version: 24
           package-manager-cache: false
 
-      - name: Check project files
-        run: |
-          echo "Current directory:"
-          pwd
-          echo "Files:"
-          ls -la
-
       - name: Install dependencies
-        run: |
-          echo "Node version:"
-          node --version
-          echo "NPM version:"
-          npm --version
-          echo "Current directory:"
-          pwd
-          echo "Project files:"
-          ls -la
-          echo "Package.json:"
-          cat package.json
-          echo "Installing dependencies..."
-          npm install --verbose
+        run: npm install
 
       - name: Build VELTRIX
-        run: |
-          echo "Starting VELTRIX build..."
-          npm run build --verbose
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
@@ -66,7 +49,7 @@ jobs:
       - name: Upload build
         uses: actions/upload-pages-artifact@v5
         with:
-          path: ./dist
+          path: frontend/dist
 
       - name: Deploy
         id: deployment
