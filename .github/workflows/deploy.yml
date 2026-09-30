@@ -1,4 +1,4 @@
-name: Deploy VELTRIX$
+name: Deploy VELTRIX
 
 on:
   push:
@@ -11,6 +11,10 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
   deploy:
     environment:
@@ -21,27 +25,35 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Check project files
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Files:"
+          ls -la
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Build VELTRIX
         run: npm run build
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Upload build
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
 
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
